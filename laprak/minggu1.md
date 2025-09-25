@@ -18,18 +18,36 @@ aku mengerjakan perulangan
 copy paste soal nomor 1 disini
 
 ```go
-package main
+#include <iostream>
 
-func main() {
-	fmt.Println("Kode kalian disini")
-	fmt.Println("JANGAN MASUKIN >>SCREENSHOT<< KODE KALIAN DISINI")
-	fmt.Println("KALAU ADA -20 POIN LAPRAK")
+using namespace std;
+
+int main(){
+    float a;
+    float b;
+
+    cout << "Masukan Bilangan ke 1: ";
+    cin >> a;
+    cout << "Masukan bilangan ke 2: ";
+    cin >> b;
+    
+    float penjumlahan = a + b;
+    float pengurangan = a - b;
+    float perkalian = a * b;
+    float pembagian = a / b;
+
+    cout << "penjumlahan: " << a << " dengan " << b << " adalah: " << penjumlahan << endl;
+    cout << "pengurangan: " << a << " dengan " << b << " adalah: " << pengurangan << endl;
+    cout << "perkalian: " << a << " dengan " << b << " adalah: " << perkalian << endl;
+    cout << "pembagian: " << a << " dengan " << b << " adalah: " << pembagian << endl;
+
+    return 0;
+
 }
 ```
 
 > Output
 > ![Screenshot bagian x](laprak/ss/output_no_1.jpg)
-> %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
 
 Penjelasan ttg kode kalian disini
 
