@@ -28,7 +28,7 @@ func main() {
 ```
 
 > Output
-> ![Screenshot bagian x](laprak/ss/output no 1.jpg)
+> ![Screenshot bagian x](laprak/ss/output_no_1.jpg)
 > %% Untuk mencantumkan screenshot, tidak boleh ada spasi di urlnya `()`, penamaan file bebas asal gak sara dan mudah dipahami aja,, dan jangan lupa hapus komen ini yah%%
 
 Penjelasan ttg kode kalian disini
