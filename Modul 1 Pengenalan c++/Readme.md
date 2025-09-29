@@ -7,7 +7,7 @@ Dalam C++ ada beberapa dasar penting yang biasa dipelajari, yaitu struct, aritma
 
 ## Guide
 
-## soal 1 (Struck)
+## (Struck)
 ```go
 #include <iostream>
 #include <string>
@@ -41,7 +41,7 @@ int main() {
 }
 ```
 
-## soal 2 (Aritmatika)
+## (Aritmatika)
 ```go
 #include <iostream>
 using namespace std;
@@ -58,7 +58,7 @@ int main()
 }
 ```
 
-## soal 3 (Kondisi)
+## (Kondisi)
 ```go
 #include <iostream>
 using namespace std;
@@ -90,7 +90,7 @@ int main()
 }
 ```
 
-## soal 4 (Perulangan)
+## (Perulangan)
 ```go
 #include <iostream>
 using namespace std;
@@ -161,7 +161,7 @@ int main()
 
 ```
 
-## soal 6 (Test)
+## (Test)
 ```go
 #include <iostream>
 using namespace std;
