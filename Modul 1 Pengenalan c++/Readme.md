@@ -3,7 +3,7 @@
 
 ## Dasar Teori
 
-yang panjang dikit
+Saya Belajar
 
 ## Unguided
 
@@ -56,10 +56,45 @@ Penjelasan ttg kode kalian disini
 soal nomor 2A
 
 ```go
-package main
+#include <iostream>
+#include <string>
+using namespace std;
 
-func main() {
-	fmt.Println("kode untuk soal nomor 2A")
+int main() {
+    int angka;
+    string teks;
+    
+    string satuan[] = {"nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"};
+    string belasan[] = {"sepuluh", "sebelas", "dua belas", "tiga belas", "empat belas", "lima belas", 
+                        "enam belas", "tujuh belas", "delapan belas", "sembilan belas"};
+    
+    cout << "Masukkan angka (0-100): ";
+    cin >> angka;
+    
+    if (angka < 0 || angka > 100) {
+        cout << "Angka harus antara 0 dan 100!" << endl;
+        return 1;
+    }
+    
+    if (angka < 10) {
+        teks = satuan[angka];
+    } else if (angka >= 10 && angka < 20) {
+        teks = belasan[angka - 10];
+    } else if (angka >= 20 && angka < 100) {
+        int puluhan = angka / 10;
+        int sisa = angka % 10;
+        if (sisa == 0) {
+            teks = satuan[puluhan] + " puluh";
+        } else {
+            teks = satuan[puluhan] + " puluh " + satuan[sisa];
+        }
+    } else if (angka == 100) {
+        teks = "seratus";
+    }
+    
+    cout << angka << " : " << teks << endl;
+    
+    return 0;
 }
 ```
 
@@ -70,21 +105,65 @@ penjelasan kode
 
 Kalau adalanjutan di lanjut disini aja
 
-soal nomor 2B
+### soal 3
+
+aku mengerjakan perulangan
+
+## Unguided
+
+### Soal 3
+
+copy paste soal nomor 1 disini
 
 ```go
-package main
+#include <iostream>
+using namespace std;
 
-func main() {
-	fmt.Println("kode untuk soal nomor 2B")
+int main() {
+    int n;
+    
+    cout << "input: ";
+    cin >> n;
+    
+    cout << "output:" << endl;
+    
+    for (int i = n; i >= 1; i--) {
+        
+        for (int s = 0; s < (n - i); s++) {
+            cout << "  ";
+        }
+        
+        
+        for (int j = i; j >= 1; j--) {
+            cout << j << " ";
+        }
+        
+        cout << "* ";
+        
+        
+        for (int j = 1; j <= i; j++) {
+            cout << j;
+            if (j < i) {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+    
+    
+    for (int s = 0; s < n; s++) {
+        cout << "  ";
+    }
+    cout << "*" << endl;
+    
+    return 0;
 }
 ```
 
 > Output
 > ![Screenshot bagian x](Output/output_no3.png)
 
-penjelasan bedanya sesuai soal
-
+Penjelasan ttg kode kalian disini
 ## Referensi
 
 1. https://en.wikipedia.org/wiki/Data_structure (diakses blablabla)
