@@ -47,7 +47,7 @@ int main(){
 ```
 
 > Output
-> ![Screenshot bagian x](Output/output_no_1.jpg)
+> ![Screenshot bagian x](Output/output_no1.png)
 
 Penjelasan ttg kode kalian disini
 
@@ -64,7 +64,7 @@ func main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal2A.png)
+> ![Screenshot bagian x](Output/output_no2.png)
 
 penjelasan kode
 
@@ -81,7 +81,7 @@ func main() {
 ```
 
 > Output
-> ![Screenshot bagian x](output/screenshot_soal2B.png)
+> ![Screenshot bagian x](Output/output_no3.png)
 
 penjelasan bedanya sesuai soal
 
