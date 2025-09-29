@@ -3,13 +3,7 @@
 
 ## Dasar Teori
 
-Saya Belajar
-
-## Unguided
-
-### soal 1
-
-aku mengerjakan perulangan
+Dalam C++ ada beberapa dasar penting yang biasa dipelajari, yaitu struct, aritmatika, kondisi, perulangan, dan fungsi. Struct dipakai buat ngumpulin beberapa variabel dengan tipe berbeda dalam satu wadah supaya data lebih gampang diatur. Aritmatika berhubungan sama operator kayak +, -, *, /, dan % buat ngelakuin hitungan matematis. Kondisi atau percabangan (if, else if, else, switch) dipakai biar program bisa milih jalannya sesuai syarat yang ada. Perulangan (for, while, do while) berguna buat ngejalanin kode berulang-ulang tanpa harus nulis perintah banyak kali. Sementara itu, fungsi adalah blok kode yang bisa dipanggil kapan aja buat tugas tertentu, jadi program lebih rapi, gampang dibaca, dan bisa dipakai lagi.
 
 ## Unguided
 
@@ -54,7 +48,7 @@ Program di atas meminta pengguna memasukkan dua bilangan, lalu menghitung penjum
 
 ### Soal 2
 
-soal nomor 2A
+Buatlah sebuah program yang menerima masukan angka dan mengeluarkan output nilai angka tersebut dalam bentuk tulisan. Angka yang akan di-input-kan user adalah bilangan bulat positif mulai dari 0 s.d 100
 
 ```go
 #include <iostream>
@@ -112,7 +106,7 @@ aku mengerjakan perulangan
 
 ### Soal 3
 
-copy paste soal nomor 1 disini
+Buatlah program yang dapat memberikan input dan output sbb.
 
 ```go
 #include <iostream>
