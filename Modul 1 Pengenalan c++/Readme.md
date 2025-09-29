@@ -47,7 +47,7 @@ int main(){
 ```
 
 > Output
-> ![Screenshot bagian x](ss/output_no_1.jpg)
+> ![Screenshot bagian x](Output/output_no_1.jpg)
 
 Penjelasan ttg kode kalian disini
 
