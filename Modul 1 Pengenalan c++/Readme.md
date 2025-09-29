@@ -1,5 +1,5 @@
-# <h1 align="center">Laporan Praktikum Modul X <br> Nama Modul</h1>
-<p align="center">NAMA - NIM</p>
+# <h1 align="center">Laporan Praktikum Modul 1 <br> Pengenalan c++</h1>
+<p align="center">Zaki Hamdani - 103112400089</p>
 
 ## Dasar Teori
 
