@@ -15,7 +15,7 @@ aku mengerjakan perulangan
 
 ### Soal 1
 
-copy paste soal nomor 1 disini
+Buatlah program yang menerima input-an dua buah bilangan betipe float, kemudian memberikan output-an hasil penjumlahan, pengurangan, perkalian, dan pembagian dari dua bilangan tersebut
 
 ```go
 #include <iostream>
@@ -49,7 +49,8 @@ int main(){
 > Output
 > ![Screenshot bagian x](Output/output_no1.png)
 
-Penjelasan ttg kode kalian disini
+Penjelasan Kode
+Program di atas meminta pengguna memasukkan dua bilangan, lalu menghitung penjumlahan, pengurangan, perkalian, dan pembagiannya. Hasil dari setiap operasi ditampilkan ke layar menggunakan cout, dan return 0; menandakan program selesai dengan normal.
 
 ### Soal 2
 
@@ -101,9 +102,7 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/output_no2.png)
 
-penjelasan kode
-
-Kalau adalanjutan di lanjut disini aja
+Program di atas digunakan untuk mengubah angka menjadi tulisan dalam bahasa Indonesia untuk rentang 0–100. Pertama, pengguna diminta memasukkan angka, lalu program mengecek apakah angka valid. Jika kurang dari 10, hasil diambil dari array satuan, jika 10–19 diambil dari array belasan, jika 20–99 dibentuk dari kata “puluh” ditambah satuan, dan khusus angka 100 ditampilkan sebagai “seratus”. Hasil akhirnya ditampilkan ke layar dalam bentuk angka dan teks.
 
 ### soal 3
 
@@ -163,7 +162,8 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/output_no3.png)
 
-Penjelasan ttg kode kalian disini
+Program di atas meminta input sebuah angka `n`, lalu menampilkan pola berbentuk segitiga menurun dengan angka dari besar ke kecil di sebelah kiri, tanda `*` di tengah, dan angka dari kecil ke besar di sebelah kanan. Setiap baris bergeser ke kanan dengan spasi sesuai urutan, dan di bagian akhir program menambahkan satu `*` di bawah tengah pola.
+
 ## Referensi
 
 1. https://en.wikipedia.org/wiki/Data_structure (diakses blablabla)
