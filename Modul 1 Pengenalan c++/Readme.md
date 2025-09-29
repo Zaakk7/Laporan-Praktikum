@@ -109,7 +109,7 @@ int main()
 }
 ```
 
-## soal 5 (fungsi)
+## (Fungsi)
 ```go
 #include <iostream>
 using namespace std;
@@ -322,7 +322,10 @@ int main() {
 Program di atas meminta input sebuah angka `n`, lalu menampilkan pola berbentuk segitiga menurun dengan angka dari besar ke kecil di sebelah kiri, tanda `*` di tengah, dan angka dari kecil ke besar di sebelah kanan. Setiap baris bergeser ke kanan dengan spasi sesuai urutan, dan di bagian akhir program menambahkan satu `*` di bawah tengah pola.
 
 ## Referensi
-
-1. https://en.wikipedia.org/wiki/Data_structure (diakses blablabla)
-
+1. https://www.w3schools.com/cpp/cpp_for_loop.asp
+2. https://www.w3schools.com/cpp/cpp_conditions.asp
+3. https://www.w3schools.com/cpp/cpp_conditions_elseif.asp
+4. https://www.w3schools.com/cpp/cpp_conditions_else.asp
+5. https://www.w3schools.com/cpp/cpp_variables_multiple.asp
+6. https://www.w3schools.com/cpp/cpp_arrays.asp 
 
