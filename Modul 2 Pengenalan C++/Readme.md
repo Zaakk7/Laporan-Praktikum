@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul 2 <br> Pengenalan c++</h1>
+# <h1 align="center">Laporan Praktikum Modul 2 <br> Pengenalan C++</h1>
 <p align="center">Zaki Hamdani - 103112400089</p>
 
 ## Dasar Teori
