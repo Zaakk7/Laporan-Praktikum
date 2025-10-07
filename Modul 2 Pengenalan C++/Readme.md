@@ -248,6 +248,7 @@ Buatlah program yang menunjukkan penggunaan call by reference. Buat sebuah prose
 Contoh Output:
 
 Nilai awal: 5
+
 Nilai setelah dikuadratkan: 25
 
 ```go
