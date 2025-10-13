@@ -7,7 +7,7 @@ Singly Linked List merupakan salah satu bentuk struktur data dinamis yang terdir
 
 ## Guide
 
-# linkedlist.cpp
+### linkedlist.cpp
 ```go
 #include <iostream>
 using namespace std;
