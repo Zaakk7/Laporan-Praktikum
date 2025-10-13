@@ -374,8 +374,10 @@ Program ini merupakan implementasi sederhana dari konsep **fungsi, array dua dim
 
 
 ## Referensi
-1. https://www.w3schools.com/dsa/dsa_intro.php?utm_source=chatgpt.com 
-2. https://www.w3schools.com/cpp/cpp_data_structures.asp?utm_source=chatgpt.com 
-3. https://www.w3schools.com/cpp/cpp_data_types.asp?utm_source=chatgpt.com 
-4. https://www.w3schools.in/cplusplus/data-abstraction?utm_source=chatgpt.com 
-5. https://en.wikipedia.org/wiki/Abstract_data_type?utm_source=chatgpt.com 
+Berikut daftar **link referensi tentang ADT dan konsep terkait** tanpa tambahan sumber dari ChatGPT:
+
+1. https://www.w3schools.com/dsa/dsa_intro.php
+2. https://www.w3schools.com/cpp/cpp_data_structures.asp
+3. https://www.w3schools.com/cpp/cpp_structs.asp
+4. https://www.w3schools.com/cpp/cpp_data_types.asp
+5. https://www.w3schools.in/cplusplus/data-abstraction
