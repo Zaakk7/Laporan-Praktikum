@@ -308,8 +308,6 @@ Program ini merupakan implementasi sederhana dari konsep **fungsi, array dua dim
 
 
 ## Referensi
-Berikut daftar **link referensi tentang ADT dan konsep terkait** tanpa tambahan sumber dari ChatGPT:
-
 1. https://www.w3schools.com/dsa/dsa_intro.php
 2. https://www.w3schools.com/cpp/cpp_data_structures.asp
 3. https://www.w3schools.com/cpp/cpp_structs.asp
