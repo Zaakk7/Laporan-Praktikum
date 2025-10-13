@@ -374,8 +374,8 @@ Program ini merupakan implementasi sederhana dari konsep **fungsi, array dua dim
 
 
 ## Referensi
-1. https://www.w3schools.com/cpp/cpp_references.asp
-2. https://www.w3schools.com/cpp/cpp_function_reference.asp
-3. https://www.w3schools.com/cpp/cpp_function_structures.asp
-4. https://www.w3schools.com/cpp/exercise.asp?x=xrcise_function_reference1
-5. https://www.w3schools.com/cpp/cpp_function_param.asp
+1. https://www.w3schools.com/dsa/dsa_intro.php?utm_source=chatgpt.com 
+2. https://www.w3schools.com/cpp/cpp_data_structures.asp?utm_source=chatgpt.com 
+3. https://www.w3schools.com/cpp/cpp_data_types.asp?utm_source=chatgpt.com 
+4. https://www.w3schools.in/cplusplus/data-abstraction?utm_source=chatgpt.com 
+5. https://en.wikipedia.org/wiki/Abstract_data_type?utm_source=chatgpt.com 
