@@ -66,60 +66,96 @@ int main(){
 
 ### Soal 1
 
-Buatlah sebuah program untuk melakukan transpose pada sebuah matriks persegi berukuran 3x3. Operasi transpose adalah mengubah baris menjadi kolom dan sebaliknya. Inisialisasi matriks awal di dalam kode, kemudian buat logika untuk melakukan transpose dan simpan hasilnya ke dalam matriks baru. Terakhir, tampilkan matriks awal dan matriks hasil transpose.
-
-Contoh Output:
-
-Matriks Awal:
-
-1 2 3
-
-4 5 6
-
-7 8 9
-
-Matriks Hasil Transpose:
-
-1 4 7
-
-2 5 8
-
-3 6 9
-
+Buat program yang dapat menyimpan data mahasiswa (max. 10) ke dalam sebuah array
+dengan field nama, nim, uts, uas, tugas, dan nilai akhir. Nilai akhir diperoleh dari FUNGSI
+dengan rumus 0.3*uts+0.4*uas+0.3*tugas.
 ```go
 #include <iostream>
+#include <string>
+#include <iomanip>
+#include <limits>
 using namespace std;
 
+struct Mahasiswa {
+    string nama;
+    string nim;
+    float uts;
+    float uas;
+    float tugas;
+    float nilaiAkhir;
+};
+
+float hitungNilaiAkhir(float uts, float uas, float tugas) {
+    return 0.3f * uts + 0.4f * uas + 0.3f * tugas;
+}
+
 int main() {
-    int matrik[3][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-    int transpose[3][3];
-
-    cout << "Matriks Awal:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << matrik[i][j] << " ";
+    Mahasiswa mhs[10];
+    int n = 0;
+    while (true) {
+        cout << "\n1. Tambah data\n2. Tampilkan data\n3. Keluar\nPilih menu: ";
+        int pilihan;
+        if (!(cin >> pilihan)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Input tidak valid.\n";
+            continue;
         }
-        cout << endl;
-    }
 
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            transpose[j][i] = matrik[i][j];
+        if (pilihan == 1) {
+            if (n >= 10) {
+                cout << "Data penuh (maks 10 mahasiswa).\n";
+                continue;
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Nama   : ";
+            getline(cin, mhs[n].nama);
+            cout << "NIM    : ";
+            getline(cin, mhs[n].nim);
+            cout << "Nilai UTS  : ";
+            while (!(cin >> mhs[n].uts)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Masukkan angka untuk UTS: ";
+            }
+            cout << "Nilai UAS  : ";
+            while (!(cin >> mhs[n].uas)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Masukkan angka untuk UAS: ";
+            }
+            cout << "Nilai Tugas: ";
+            while (!(cin >> mhs[n].tugas)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Masukkan angka untuk Tugas: ";
+            }
+            mhs[n].nilaiAkhir = hitungNilaiAkhir(mhs[n].uts, mhs[n].uas, mhs[n].tugas);
+            n++;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Data berhasil ditambah.\n";
+        } else if (pilihan == 2) {
+            if (n == 0) {
+                cout << "Belum ada data.\n";
+                continue;
+            }
+            cout << "\nDaftar Nilai Mahasiswa\n";
+            cout << left << setw(4) << "No" << setw(25) << "Nama" << setw(12) << "NIM" << setw(10) << "NilaiAkhir" << '\n';
+            cout << string(55, '-') << '\n';
+            cout << fixed << setprecision(2);
+            for (int i = 0; i < n; ++i) {
+                cout << left << setw(4) << (i + 1)
+                     << setw(25) << mhs[i].nama
+                     << setw(12) << mhs[i].nim
+                     << setw(10) << mhs[i].nilaiAkhir << '\n';
+            }
+        } else if (pilihan == 3) {
+            cout << "Keluar.\n";
+            break;
+        } else {
+            cout << "Pilihan tidak tersedia.\n";
         }
     }
-
-    cout << "\nMatriks Hasil Transpose:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << transpose[i][j] << " ";
-        }
-        cout << endl;
-    }
-
     return 0;
 }
 ```
@@ -127,7 +163,7 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/Output_no1.png)
 
-Program di atas Program ini berfungsi untuk melakukan **transpose** pada matriks 3x3, yaitu menukar baris menjadi kolom dan sebaliknya. Di awal, matriks `matrik` diinisialisasi dengan nilai 1–9, lalu dibuat matriks kosong `transpose` untuk menampung hasilnya. Program pertama menampilkan matriks awal, kemudian menggunakan dua perulangan untuk menukar posisi elemen dengan rumus `transpose[j][i] = matrik[i][j]`. Setelah proses selesai, hasil transpose ditampilkan, menghasilkan matriks dengan baris dan kolom yang saling bertukar posisi.
+Program ini merupakan aplikasi sederhana untuk mengelola data mahasiswa menggunakan struktur data dan fungsi dalam bahasa C++. Program mendefinisikan sebuah struct bernama *Mahasiswa* yang berisi field nama, NIM, nilai UTS, UAS, tugas, dan nilai akhir. Fungsi *hitungNilaiAkhir()* digunakan untuk menghitung nilai akhir mahasiswa dengan rumus 0.3 × UTS + 0.4 × UAS + 0.3 × tugas. Di dalam fungsi utama (*main*), program menampilkan menu dengan tiga pilihan yaitu menambah data, menampilkan data, dan keluar. Pengguna dapat memasukkan hingga 10 data mahasiswa, di mana setiap data yang diinput akan otomatis dihitung nilai akhirnya. Hasil data kemudian ditampilkan dalam bentuk tabel rapi menggunakan format dari pustaka *iomanip*. Program ini juga dilengkapi validasi input dan pembatasan jumlah data, sehingga mencerminkan penerapan prinsip modularitas, pengelolaan data terstruktur, serta konsep dasar *Abstract Data Type (ADT)* dalam pemrograman.
 
 
 ### Soal 2
