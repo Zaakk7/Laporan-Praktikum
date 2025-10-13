@@ -64,6 +64,72 @@ int main(){
 
 ## Unguide
 
+# <h1 align="center">Laporan Praktikum Modul 3 <br> Abstract Data Type</h1>
+<p align="center">Zaki Hamdani - 103112400089</p>
+
+## Dasar Teori
+
+Abstract Data Type (ADT) membahas konsep pembentukan tipe data abstrak yang memisahkan antara spesifikasi dan implementasi suatu tipe data. ADT merupakan tipe data buatan pengguna yang memiliki sekumpulan operasi dasar (primitif) untuk mengelola dan memanipulasi data, seperti konstruktor, selektor, mutator, validator, dan destruktor. Dalam penerapannya, ADT biasanya terdiri dari dua bagian, yaitu file header (.h) yang berisi definisi tipe dan deklarasi fungsi, serta file implementasi (.cpp) yang memuat realisasi fungsinya. Konsep ini meningkatkan modularitas, keterbacaan, dan kemudahan pemeliharaan program, seperti pada contoh ADT mahasiswa dan pelajaran dalam bahasa C++.
+
+## Guide
+
+## Menghitung Rata Rata
+
+## mahasiswa.h
+```go
+#ifndef MAHASISWA_H_INCLUDED
+#define MAHASISWA_H_INCLUDED
+
+struct mahasiswa
+{
+    char nim[10];
+    int nilai1, nilai2;
+};
+
+void inputMhs(mahasiswa &m);
+float rata2(mahasiswa m);
+
+#endif
+```
+
+## Mahasiswa.cpp
+```go
+#include "mahasiswa.h"
+#include <iostream>
+using namespace std;
+
+void inputMhs(mahasiswa &m)
+{
+    cout << "input nama = ";
+    cin >> (m) .nim;
+    cout << "input nilai = ";
+    cin >> (m) .nilai1;
+    cout << "input niali2 = ";
+    cin >> m .nilai2;
+
+}
+float rata2(mahasiswa m)
+{
+    return float(m.nilai1 + m.nilai2) / 2;
+}
+```
+
+## main.cpp
+```go
+#include <iostream>
+#include "mahasiswa.h"
+using namespace std;
+
+int main(){
+    mahasiswa mhs;
+    inputMhs(mhs);
+    cout << "rata rata = " << rata2(mhs);
+    return 0;
+}
+```
+
+## Unguide
+
 ### Soal 1
 
 Buat program yang dapat menyimpan data mahasiswa (max. 10) ke dalam sebuah array
@@ -229,13 +295,82 @@ int main() {
 Program ini merupakan penerapan konsep **Abstract Data Type (ADT)** dalam bahasa C++, yang memisahkan antara *definisi tipe data*, *implementasi fungsi*, dan *pengujian program utama*. Pada file **`pelajaran.h`**, didefinisikan tipe data `struct Pelajaran` yang memiliki dua atribut yaitu `namaMapel` dan `kodeMapel`, serta deklarasi dua fungsi `create_pelajaran()` dan `tampil_pelajaran()`. File **`pelajaran.cpp`** berisi implementasi fungsi-fungsi tersebut, di mana `create_pelajaran()` berfungsi sebagai *konstruktor* untuk membuat objek pelajaran baru dengan mengisi nama dan kode, sedangkan `tampil_pelajaran()` digunakan untuk menampilkan data pelajaran ke layar. File **`main.cpp`** berperan sebagai program utama yang menguji ADT dengan membuat objek pelajaran menggunakan fungsi `create_pelajaran()` dan menampilkannya melalui `tampil_pelajaran()`. Dengan pembagian ini, program menjadi lebih modular, mudah dikelola, serta mencerminkan penerapan prinsip dasar ADT, yaitu pemisahan antara spesifikasi dan implementasi.
 
 
+### Soal 2
+> ![Screenshot bagian x](Output/Soal_no2.png)
+
+```go
+#include <iostream>
+using namespace std;
+
+void tampilArray(int A[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << A[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void tukarPosisi(int A[3][3], int B[3][3], int baris, int kolom) {
+    int temp = A[baris][kolom];
+    A[baris][kolom] = B[baris][kolom];
+    B[baris][kolom] = temp;
+}
+
+void tukarPointer(int *p1, int *p2) {
+    int temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
+
+int main() {
+    int A[3][3] = { {1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8, 9} };
+
+    int B[3][3] = { {10, 11, 12},
+                    {13, 14, 15},
+                    {16, 17, 18} };
+
+    int *p1, *p2;
+    int x = 100, y = 200;
+    p1 = &x;
+    p2 = &y;
+
+    cout << "Array A sebelum ditukar:\n";
+    tampilArray(A);
+    cout << "\nArray B sebelum ditukar:\n";
+    tampilArray(B);
+
+    cout << "\nMenukar posisi elemen pada baris 1 kolom 2...\n";
+    tukarPosisi(A, B, 1, 2);
+
+    cout << "\nArray A sesudah ditukar:\n";
+    tampilArray(A);
+    cout << "\nArray B sesudah ditukar:\n";
+    tampilArray(B);
+
+    cout << "\nNilai sebelum tukar pointer:\n";
+    cout << "x = " << *p1 << ", y = " << *p2 << endl;
+
+    tukarPointer(p1, p2);
+
+    cout << "Nilai sesudah tukar pointer:\n";
+    cout << "x = " << *p1 << ", y = " << *p2 << endl;
+
+    return 0;
+}
+```
+
+> Output
+> ![Screenshot bagian x](Output/Output_no3.png)
+
+Program ini merupakan implementasi sederhana dari konsep **fungsi, array dua dimensi, dan pointer** dalam bahasa C++. Program ini menggunakan dua buah array 2D berukuran 3×3 bernama `A` dan `B`, serta dua buah pointer integer `p1` dan `p2` yang masing-masing menunjuk ke variabel `x` dan `y`. Fungsi `tampilArray()` digunakan untuk menampilkan isi sebuah array dua dimensi, sedangkan fungsi `tukarPosisi()` berfungsi menukar nilai dari dua array pada posisi baris dan kolom tertentu. Selain itu, fungsi `tukarPointer()` digunakan untuk menukar nilai dari dua variabel melalui pointer. Pada bagian `main()`, program menampilkan isi awal array A dan B, kemudian menukar elemen pada posisi yang ditentukan dan menampilkannya kembali untuk menunjukkan perubahan hasil pertukaran. Selanjutnya, program juga menampilkan nilai sebelum dan sesudah proses pertukaran melalui pointer. Dengan struktur ini, program mencerminkan penerapan konsep dasar **manipulasi array 2D, penggunaan fungsi, serta operasi pointer** dalam pemrograman terstruktur.
+
+
 ## Referensi
 1. https://www.w3schools.com/cpp/cpp_references.asp
 2. https://www.w3schools.com/cpp/cpp_function_reference.asp
 3. https://www.w3schools.com/cpp/cpp_function_structures.asp
 4. https://www.w3schools.com/cpp/exercise.asp?x=xrcise_function_reference1
 5. https://www.w3schools.com/cpp/cpp_function_param.asp
-
-
-
-
