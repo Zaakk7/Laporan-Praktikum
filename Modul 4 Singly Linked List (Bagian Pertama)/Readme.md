@@ -1,66 +1,192 @@
-# <h1 align="center">Laporan Praktikum Modul 3 <br> Abstract Data Type</h1>
+# <h1 align="center">Laporan Praktikum Modul 4 <br> Singly Linked List (Bagian pertama)</h1>
 <p align="center">Zaki Hamdani - 103112400089</p>
 
 ## Dasar Teori
 
-Abstract Data Type (ADT) membahas konsep pembentukan tipe data abstrak yang memisahkan antara spesifikasi dan implementasi suatu tipe data. ADT merupakan tipe data buatan pengguna yang memiliki sekumpulan operasi dasar (primitif) untuk mengelola dan memanipulasi data, seperti konstruktor, selektor, mutator, validator, dan destruktor. Dalam penerapannya, ADT biasanya terdiri dari dua bagian, yaitu file header (.h) yang berisi definisi tipe dan deklarasi fungsi, serta file implementasi (.cpp) yang memuat realisasi fungsinya. Konsep ini meningkatkan modularitas, keterbacaan, dan kemudahan pemeliharaan program, seperti pada contoh ADT mahasiswa dan pelajaran dalam bahasa C++.
+Singly Linked List merupakan salah satu bentuk struktur data dinamis yang terdiri dari serangkaian elemen (node) yang saling terhubung melalui pointer. Setiap node terdiri dari dua bagian utama, yaitu data (informasi yang disimpan) dan pointer next (penunjuk ke node berikutnya). Struktur ini hanya memiliki satu arah akses, yaitu dari node pertama (head) menuju node terakhir yang menunjuk ke NULL. Karena sifatnya yang dinamis, ukuran Singly Linked List dapat bertambah atau berkurang sesuai kebutuhan tanpa harus menentukan kapasitas di awal seperti pada array. Operasi dasar yang umum dilakukan meliputi pembuatan list, penambahan elemen (insert), penghapusan elemen (delete), penelusuran (traverse/view), dan pembaruan data (update). Kelebihan utama dari Singly Linked List adalah efisiensi dalam manipulasi data (terutama penyisipan dan penghapusan), meskipun akses data harus dilakukan secara berurutan dari awal list.meliharaan program, seperti pada contoh ADT mahasiswa dan pelajaran dalam bahasa C++.
 
 ## Guide
 
-## Menghitung Rata Rata
-
-## mahasiswa.h
+# linkedlist.cpp
 ```go
-#ifndef MAHASISWA_H_INCLUDED
-#define MAHASISWA_H_INCLUDED
+#include <iostream>
+using namespace std;
 
-struct mahasiswa
-{
-    char nim[10];
-    int nilai1, nilai2;
+// Struktur Node
+struct Node {
+    int data;
+    Node* next;
 };
 
-void inputMhs(mahasiswa &m);
-float rata2(mahasiswa m);
+// Pointer awal dan akhir
+Node* head = nullptr;
 
-#endif
-```
-
-## Mahasiswa.cpp
-```go
-#include "mahasiswa.h"
-#include <iostream>
-using namespace std;
-
-void inputMhs(mahasiswa &m)
-{
-    cout << "input nama = ";
-    cin >> (m) .nim;
-    cout << "input nilai = ";
-    cin >> (m) .nilai1;
-    cout << "input niali2 = ";
-    cin >> m .nilai2;
-
+// Fungsi untuk membuat node baru
+Node* createNode(int data) {
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->next = nullptr;
+    return newNode;
 }
-float rata2(mahasiswa m)
-{
-    return float(m.nilai1 + m.nilai2) / 2;
+
+
+void insertBelakang(int data) {
+    Node* newNode = createNode(data);
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    cout << "Data " << data << " berhasil ditambahkan di belakang.\n";
 }
-```
 
-## main.cpp
-```go
-#include <iostream>
-#include "mahasiswa.h"
-using namespace std;
+void insertSetelah(int target, int dataBaru) {
+    Node* temp = head;
+    while (temp != nullptr && temp->data != target) {
+        temp = temp->next;
+    }
 
-int main(){
-    mahasiswa mhs;
-    inputMhs(mhs);
-    cout << "rata rata = " << rata2(mhs);
+    if (temp == nullptr) {
+        cout << "Data " << target << " tidak ditemukan!\n";
+    } else {
+        Node* newNode = createNode(dataBaru);
+        newNode->next = temp->next;
+        temp->next = newNode;
+        cout << "Data " << dataBaru << " berhasil disisipkan setelah " << target << ".\n";
+    }
+}
+
+// ========== DELETE FUNCTION ==========
+void hapusNode(int data) {
+    if (head == nullptr) {
+        cout << "List kosong!\n";
+        return;
+    }
+
+    Node* temp = head;
+    Node* prev = nullptr;
+
+    // Jika data di node pertama
+    if (temp != nullptr && temp->data == data) {
+        head = temp->next;
+        delete temp;
+        cout << "Data " << data << " berhasil dihapus.\n";
+        return;
+    }
+
+    // Cari node yang akan dihapus
+    while (temp != nullptr && temp->data != data) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // Jika data tidak ditemukan
+    if (temp == nullptr) {
+        cout << "Data " << data << " tidak ditemukan!\n";
+        return;
+    }
+
+    prev->next = temp->next;
+    delete temp;
+    cout << "Data " << data << " berhasil dihapus.\n";
+}
+
+// ========== UPDATE FUNCTION ==========
+void updateNode(int dataLama, int dataBaru) {
+    Node* temp = head;
+    while (temp != nullptr && temp->data != dataLama) {
+        temp = temp->next;
+    }
+
+    if (temp == nullptr) {
+        cout << "Data " << dataLama << " tidak ditemukan!\n";
+    } else {
+        temp->data = dataBaru;
+        cout << "Data " << dataLama << " berhasil diupdate menjadi " << dataBaru << ".\n";
+    }
+}
+
+// ========== DISPLAY FUNCTION ==========
+void tampilkanList() {
+    if (head == nullptr) {
+        cout << "List kosong!\n";
+        return;
+    }
+
+    Node* temp = head;
+    cout << "Isi Linked List: ";
+    while (temp != nullptr) {
+        cout << temp->data << " -> ";
+        temp = temp->next
+    }
+    cout << "NULL\n";
+}
+
+// ========== MAIN PROGRAM ==========
+int main() {
+    int pilihan, data, target, dataBaru;
+
+    do {
+        cout << "\n=== MENU SINGLE LINKED LIST ===\n";
+        cout << "1. Insert Depan\n";
+        cout << "2. Insert Belakang\n";
+        cout << "3. Insert Setelah\n";
+        cout << "4. Hapus Data\n";
+        cout << "5. Update Data\n";
+        cout << "6. Tampilkan List\n";
+        cout << "0. Keluar\n";
+        cout << "Pilih: ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan data: ";
+                cin >> data;
+                insertDepan(data);
+                break;
+            case 2:
+                cout << "Masukkan data: ";
+                cin >> data;
+                insertBelakang(data);
+                break;
+            case 3:
+                cout << "Masukkan data target: ";
+                cin >> target;
+                cout << "Masukkan data baru: ";
+                cin >> dataBaru;
+                insertSetelah(target, dataBaru);
+                break;
+            case 4:
+                cout << "Masukkan data yang ingin dihapus: ";
+                cin >> data;
+                hapusNode(data);
+                break;
+            case 5:
+                cout << "Masukkan data lama: ";
+                cin >> data;
+                cout << "Masukkan data baru: ";
+                cin >> dataBaru;
+                updateNode(data, dataBaru);
+                break;
+            case 6:
+                tampilkanList();
+                break;
+            case 0:
+                cout << "Program selesai.\n";
+                break;
+            default:
+                cout << "Pilihan tidak valid!\n";
+        }
+    } while (pilihan != 0);
+
     return 0;
 }
 ```
+
 
 ## Unguide
 
@@ -174,57 +300,75 @@ int main() {
 Program di atas merupakan implementasi **struktur data antrian (queue)** menggunakan **single linked list** dalam bahasa C++. Setiap elemen antrian berisi data pembeli berupa **nama dan pesanan** yang disimpan dalam struct `Pembeli`. Program menggunakan dua pointer, yaitu `front` untuk menunjuk pembeli yang berada di depan antrian (akan dilayani lebih dulu) dan `rear` untuk menunjuk pembeli terakhir. Fungsi `tambahAntrian()` menambahkan pembeli baru di belakang antrian, `layaniAntrian()` menghapus pembeli dari depan antrian sebagai proses pelayanan, dan `tampilkanAntrian()` menampilkan seluruh daftar pembeli yang sedang menunggu. Menu interaktif disediakan agar pengguna dapat menambah, melayani, atau melihat antrian secara dinamis sesuai urutan kedatangan (FIFO — First In First Out).
 
 ### Soal 2
-> ![Screenshot bagian x](Output/Soal_no2.png)
+buatlah program kode untuk membalik (reverse) singly linked list (1-2-3 menjadi 3-2-1) 
 
-# pelajaran.h
 ```go
-#ifndef PELAJARAN_H_INCLUDED
-#define PELAJARAN_H_INCLUDED
-#include <string>
+#include <iostream>
 using namespace std;
 
-struct Pelajaran {
-    string namaMapel;
-    string kodeMapel;
+struct Node {
+    int data;
+    Node* next;
 };
 
-Pelajaran create_pelajaran(string namapel, string kodepel);
-void tampil_pelajaran(Pelajaran pel);
+Node* head = nullptr;
 
-#endif
-```
+void tambahNode(int nilai) {
+    Node* baru = new Node;
+    baru->data = nilai;
+    baru->next = nullptr;
 
-# pelajaran.cpp
-```go
-#include <iostream>
-#include "pelajaran.h"
-using namespace std;
-
-Pelajaran create_pelajaran(string namapel, string kodepel) {
-    Pelajaran p;
-    p.namaMapel = namapel;
-    p.kodeMapel = kodepel;
-    return p;
+    if (head == nullptr) {
+        head = baru;
+    } else {
+        Node* bantu = head;
+        while (bantu->next != nullptr)
+            bantu = bantu->next;
+        bantu->next = baru;
+    }
 }
 
-void tampil_pelajaran(Pelajaran pel) {
-    cout << "nama pelajaran : " << pel.namaMapel << endl;
-    cout << "nilai : " << pel.kodeMapel << endl;
+void tampilkanList() {
+    Node* bantu = head;
+    if (bantu == nullptr) {
+        cout << "List kosong!\n";
+        return;
+    }
+    while (bantu != nullptr) {
+        cout << bantu->data;
+        if (bantu->next != nullptr) cout << " -> ";
+        bantu = bantu->next;
+    }
+    cout << endl;
 }
-```
 
-# main.cpp
-```go
-#include <iostream>
-#include "pelajaran.h"
-using namespace std;
+void reverseList() {
+    Node* prev = nullptr;
+    Node* current = head;
+    Node* next = nullptr;
+
+    while (current != nullptr) {
+        next = current->next;  
+        current->next = prev;  
+        prev = current;        
+        current = next;        
+    }
+
+    head = prev;  
+}
 
 int main() {
-    string namapel = "Struktur Data";
-    string kodepel = "STD";
+    tambahNode(1);
+    tambahNode(2);
+    tambahNode(3);
 
-    Pelajaran pel = create_pelajaran(namapel, kodepel);
-    tampil_pelajaran(pel);
+    cout << "Linked List sebelum dibalik: ";
+    tampilkanList();
+
+    reverseList();
+
+    cout << "Linked List setelah dibalik: ";
+    tampilkanList();
 
     return 0;
 }
@@ -233,14 +377,12 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/Output_no2.png)
 
-Program ini merupakan penerapan konsep **Abstract Data Type (ADT)** dalam bahasa C++, yang memisahkan antara *definisi tipe data*, *implementasi fungsi*, dan *pengujian program utama*. Pada file **`pelajaran.h`**, didefinisikan tipe data `struct Pelajaran` yang memiliki dua atribut yaitu `namaMapel` dan `kodeMapel`, serta deklarasi dua fungsi `create_pelajaran()` dan `tampil_pelajaran()`. File **`pelajaran.cpp`** berisi implementasi fungsi-fungsi tersebut, di mana `create_pelajaran()` berfungsi sebagai *konstruktor* untuk membuat objek pelajaran baru dengan mengisi nama dan kode, sedangkan `tampil_pelajaran()` digunakan untuk menampilkan data pelajaran ke layar. File **`main.cpp`** berperan sebagai program utama yang menguji ADT dengan membuat objek pelajaran menggunakan fungsi `create_pelajaran()` dan menampilkannya melalui `tampil_pelajaran()`. Dengan pembagian ini, program menjadi lebih modular, mudah dikelola, serta mencerminkan penerapan prinsip dasar ADT, yaitu pemisahan antara spesifikasi dan implementasi.
+Program di atas merupakan implementasi **pembalikan (reverse)** pada **singly linked list** menggunakan bahasa C++. Setiap elemen list disimpan dalam **struct Node** yang memiliki dua komponen yaitu `data` dan pointer `next` untuk menunjuk node berikutnya. Fungsi `tambahNode()` digunakan untuk menambahkan data di akhir list, sedangkan `tampilkanList()` menampilkan seluruh isi list secara berurutan. Proses utama terdapat pada fungsi `reverseList()`, yang menggunakan tiga pointer — `prev`, `current`, dan `next` — untuk membalik arah sambungan antar-node sehingga urutan list menjadi terbalik. Awalnya list berisi `1 → 2 → 3`, dan setelah fungsi pembalik dijalankan, urutannya berubah menjadi `3 → 2 → 1`.
 
 
 ## Referensi
-Berikut daftar **link referensi tentang ADT dan konsep terkait** tanpa tambahan sumber dari ChatGPT:
-
-1. https://www.w3schools.com/dsa/dsa_intro.php
-2. https://www.w3schools.com/cpp/cpp_data_structures.asp
-3. https://www.w3schools.com/cpp/cpp_structs.asp
-4. https://www.w3schools.com/cpp/cpp_data_types.asp
-5. https://www.w3schools.in/cplusplus/data-abstraction
+1. https://www.w3schools.com/dsa/dsa_theory_linkedlists.php
+2. https://www.w3schools.com/dsa/dsa_algo_linkedlists_operations.php
+3. https://www.w3schools.com/dsa/dsa_data_linkedlists_types.php
+4. https://www.w3schools.com/dsa/dsa_theory_linkedlists_memory.php
+5. https://www.w3schools.com/dsa/dsa_data_queues.php
