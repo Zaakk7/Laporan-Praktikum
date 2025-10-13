@@ -167,31 +167,57 @@ Program ini merupakan aplikasi sederhana untuk mengelola data mahasiswa mengguna
 
 
 ### Soal 2
+> ![Screenshot bagian x](Output/Soal_no2.png)
 
-Buatlah program yang menunjukkan penggunaan call by reference. Buat sebuah prosedur bernama kuadratkan yang menerima satu parameter integer secara referensi (&). Prosedur ini akan mengubah nilai asli variabel yang dilewatkan dengan nilai kuadratnya. Tampilkan nilai variabel di main() sebelum dan sesudah memanggil prosedur untuk membuktikan perubahannya. 
-
-Contoh Output:
-
-Nilai awal: 5
-
-Nilai setelah dikuadratkan: 25
-
+# pelajaran.h
 ```go
-#include <iostream>
+#ifndef PELAJARAN_H_INCLUDED
+#define PELAJARAN_H_INCLUDED
+#include <string>
 using namespace std;
 
-void kuadratkan(int &x) {
-    x = x * x;
+struct Pelajaran {
+    string namaMapel;
+    string kodeMapel;
+};
+
+Pelajaran create_pelajaran(string namapel, string kodepel);
+void tampil_pelajaran(Pelajaran pel);
+
+#endif
+```
+
+# pelajaran.cpp
+```go
+#include <iostream>
+#include "pelajaran.h"
+using namespace std;
+
+Pelajaran create_pelajaran(string namapel, string kodepel) {
+    Pelajaran p;
+    p.namaMapel = namapel;
+    p.kodeMapel = kodepel;
+    return p;
 }
 
+void tampil_pelajaran(Pelajaran pel) {
+    cout << "nama pelajaran : " << pel.namaMapel << endl;
+    cout << "nilai : " << pel.kodeMapel << endl;
+}
+```
+
+# main.cpp
+```go
+#include <iostream>
+#include "pelajaran.h"
+using namespace std;
+
 int main() {
-    int nilai = 5;
+    string namapel = "Struktur Data";
+    string kodepel = "STD";
 
-    cout << "Nilai awal: " << nilai << endl;
-
-    kuadratkan(nilai);
-
-    cout << "Nilai setelah dikuadratkan: " << nilai << endl;
+    Pelajaran pel = create_pelajaran(namapel, kodepel);
+    tampil_pelajaran(pel);
 
     return 0;
 }
@@ -200,7 +226,8 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/Output_no2.png)
 
-Program ini menggunakan call by reference agar parameter x di prosedur kuadratkan langsung mengacu pada variabel asli yang dikirim dari main(). Dengan demikian, ketika x dikuadratkan (x = x * x), nilai asli variabel nilai ikut berubah. Hasilnya, setelah prosedur dipanggil, nilai nilai berubah dari 5 menjadi 25.
+Program ini merupakan penerapan konsep **Abstract Data Type (ADT)** dalam bahasa C++, yang memisahkan antara *definisi tipe data*, *implementasi fungsi*, dan *pengujian program utama*. Pada file **`pelajaran.h`**, didefinisikan tipe data `struct Pelajaran` yang memiliki dua atribut yaitu `namaMapel` dan `kodeMapel`, serta deklarasi dua fungsi `create_pelajaran()` dan `tampil_pelajaran()`. File **`pelajaran.cpp`** berisi implementasi fungsi-fungsi tersebut, di mana `create_pelajaran()` berfungsi sebagai *konstruktor* untuk membuat objek pelajaran baru dengan mengisi nama dan kode, sedangkan `tampil_pelajaran()` digunakan untuk menampilkan data pelajaran ke layar. File **`main.cpp`** berperan sebagai program utama yang menguji ADT dengan membuat objek pelajaran menggunakan fungsi `create_pelajaran()` dan menampilkannya melalui `tampil_pelajaran()`. Dengan pembagian ini, program menjadi lebih modular, mudah dikelola, serta mencerminkan penerapan prinsip dasar ADT, yaitu pemisahan antara spesifikasi dan implementasi.
+
 
 ## Referensi
 1. https://www.w3schools.com/cpp/cpp_references.asp
