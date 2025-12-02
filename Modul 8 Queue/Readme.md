@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul 8 <br> Queue (Bagian Pertama)</h1>
+# <h1 align="center">Laporan Praktikum Modul 8 <br> Queue </h1>
 <p align="center">Zaki Hamdani - 103112400089</p>
 
 ## Dasar Teori
