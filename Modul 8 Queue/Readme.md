@@ -122,193 +122,128 @@ int main() {
 ## Unguide
 
 ### Soal 1
-Buatlah ADT Doubly Linked list sebagai berikut di dalam file “Doublylist.h”:
+> ![Soal](Output/Output_no1.png)
 
+## queue.h
 ```go
-Type infotype : kendaraan <
-    nopol : string
-    warna : string
-    thnBuat : integer
->
-Type address : pointer to ElmList
-Type ElmList <
-    info : infotype
-    next : address
-    prev : address
->
+#ifndef QUEUE_H
+#define QUEUE_H
 
-Type List <
-    First : address
-    Last : address
->
+const int MAX = 5;
 
-procedure CreateList( input/output L : List )
-function alokasi( x : infotype ) → address
-procedure dealokasi(input/output P : address )
-procedure printInfo( input L : List )
-procedure insertLast(input/output L : List,  
-   input P : address )
-```
-Buatlah implementasi ADT Doubly Linked list pada file “Doublylist.cpp” dan coba hasil implementasi ADT pada file “main.cpp”.
+typedef int infotype;
 
-> Contoh Output:
-``` Output
-masukkan nomor polisi: D001
-masukkan warna kendaraan: hitam
-masukkan tahun kendaraan: 90
-masukkan nomor polisi: D003
-masukkan warna kendaraan: putih
-masukkan tahun kendaraan: 70
-masukkan nomor polisi: D001
-masukkan warna kendaraan: merah
-masukkan tahun kendaraan: 80
-nomor polisi sudah terdaftar
-masukkan nomor polisi: D004
-masukkan warna kendaraan: kuning
-masukkan tahun kendaraan: 90
-DATA LIST 1
-no polisi : D004
-warna     : kuning
-tahun     : 90
-no polisi : D003
-warna     : putih
-tahun     : 70
-no polisi : D001
-warna     : hitam
-tahun     : 90
-```
-
-## doublylist.h
-```go
-#ifndef DOUBLYLIST_H
-#define DOUBLYLIST_H
-
-#include <iostream>
-#include <string>
-using namespace std;
-
-struct kendaraan {
-    string nopol;
-    string warna;
-    int thnBuat;
+struct Queue {
+    infotype info[MAX];
+    int head;
+    int tail;
 };
 
-typedef kendaraan infotype;
-typedef struct ElmList *address;
-
-struct ElmList {
-    infotype info;
-    address next;
-    address prev;
-};
-
-struct List {
-    address first;
-    address last;
-};
-
-// --- Deklarasi Prosedur/Fungsi ---
-void createList(List &L);
-address alokasi(infotype x);
-void dealokasi(address &P);
-void insertLast(List &L, address P);
-void printInfo(List L);
-address findElm(List L, string nopol);
+void createQueue(Queue &Q);
+bool isEmptyQueue(Queue Q);
+bool isFullQueue(Queue Q);
+void enqueue(Queue &Q, infotype x);
+infotype dequeue(Queue &Q);
+void printInfo(Queue Q);
 
 #endif
 ```
 
-## doublylist.cpp
+## queue.cpp
 
 ```go
-#include "Doublylist.h"
+#include <iostream>
+#include <iomanip>
+#include "queue.h"
+using namespace std;
 
-void createList(List &L) {
-    L.first = NULL;
-    L.last = NULL;
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
 }
 
-address alokasi(infotype x) {
-    address P = new ElmList;
-    P->info = x;
-    P->next = NULL;
-    P->prev = NULL;
-    return P;
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
 }
 
-void dealokasi(address &P) {
-    delete P;
-    P = NULL;
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);
 }
 
-void insertLast(List &L, address P) {
-    if (L.first == NULL) {
-        L.first = P;
-        L.last = P;
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh" << endl;
     } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
-    }
-}
-
-void printInfo(List L) {
-    address P = L.last;
-    int i = 1;
-    cout << "\nDATA LIST " << i << endl;
-    while (P != NULL) {
-        cout << "no polisi : " << P->info.nopol << endl;
-        cout << "warna     : " << P->info.warna << endl;
-        cout << "tahun     : " << P->info.thnBuat << endl;
-        P = P->prev;
-    }
-}
-
-address findElm(List L, string nopol) {
-    address P = L.first;
-    while (P != NULL) {
-        if (P->info.nopol == nopol) {
-            return P;
+        if (isEmptyQueue(Q)) {
+            Q.head = 0;
+            Q.tail = 0;
+        } else {
+            Q.tail++;
         }
-        P = P->next;
+        Q.info[Q.tail] = x;
     }
-    return NULL;
+}
+
+infotype dequeue(Queue &Q) {
+    if (isEmptyQueue(Q)) {
+        return -1;
+    }
+
+    infotype temp = Q.info[Q.head];
+
+    if (Q.head == Q.tail) {
+        Q.head = -1;
+        Q.tail = -1;
+    } else {
+        for (int i = 0; i < Q.tail; i++) {
+            Q.info[i] = Q.info[i + 1];
+        }
+        Q.tail--;
+    }
+
+    return temp;
+}
+
+void printInfo(Queue Q) {
+    cout << setw(2) << Q.head << " - " << setw(2) << Q.tail;
+    cout << "   :   ";
+
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
+    }
+    cout << endl;
 }
 ```
 
 ## main.cpp
 
 ```go
-#include "Doublylist.h"
+#include <iostream>
+#include "queue.h"
+using namespace std;
 
 int main() {
-    List L;
-    createList(L);
-    infotype x;
-    address P;
-    char lagi = 'y';
+    cout << "Hello world!" << endl;
+    cout << "---------------------------" << endl;
+    cout << " H - T   : Queue Info" << endl;
+    cout << "---------------------------" << endl;
 
-    while (lagi == 'y' || lagi == 'Y') {
-        cout << "masukkan nomor polisi: ";
-        cin >> x.nopol;
-        cout << "masukkan warna kendaraan: ";
-        cin >> x.warna;
-        cout << "masukkan tahun kendaraan: ";
-        cin >> x.thnBuat;
+    Queue Q;
+    createQueue(Q);
 
-        // Setelah semua data dimasukkan, baru dicek apakah nopol sudah ada
-        if (findElm(L, x.nopol) != NULL) {
-            cout << "nomor polisi sudah terdaftar\n";
-        } else {
-            P = alokasi(x);
-            insertLast(L, P);
-        }
-
-        cout << "Tambah data lagi? (y/n): ";
-        cin >> lagi;
-    }
-
-    printInfo(L);
+    printInfo(Q);
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    enqueue(Q, 4); printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
+    dequeue(Q);    printInfo(Q);
 
     return 0;
 }
