@@ -458,11 +458,9 @@ int main(){
 Program di atas kemudian dilengkapi dengan tiga fungsi tambahan, yaitu hitungNode, hitungTotal, dan hitungKedalaman untuk menganalisis tree yang telah terbentuk. Fungsi hitungNode menghitung jumlah seluruh node dalam tree, fungsi hitungTotal menjumlahkan seluruh nilai info dari node-node yang ada, dan fungsi hitungKedalaman menentukan kedalaman maksimum tree dengan menelusuri jalur terdalam secara rekursif. Setelah tree selesai dibangun seperti pada soal pertama, ketiga fungsi ini dipanggil di bagian main untuk menampilkan informasi lengkap berupa kedalaman tree, jumlah node, serta total nilai tree. Dengan tambahan ini, program mampu memberikan gambaran menyeluruh tentang ukuran dan isi dari BST yang telah dibuat.
 
 ### Soal 3
-Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme
-queue Alternatif 3 (head dan tail berputar).
+> ![Soal](Output/soalno3.png)
 
 ## no3.cpp
-> ![Soal](Output/soalno3.png)
 ```go
 #include <iostream>
 using namespace std;
