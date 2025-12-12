@@ -122,7 +122,7 @@ int main() {
 ## Unguide
 
 ### Soal 1
-> ![Soal](Output/Output_no1.png)
+> ![Soal](Output/soalno1.png)
 
 ## queue.h
 ```go
