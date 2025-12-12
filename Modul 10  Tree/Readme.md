@@ -462,6 +462,7 @@ Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekan
 queue Alternatif 3 (head dan tail berputar).
 
 ## no3.cpp
+> ![Soal](Output/soalno3.png)
 ```go
 #include <iostream>
 using namespace std;
