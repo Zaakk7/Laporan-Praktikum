@@ -802,7 +802,7 @@ int main()
 ```
 
 > Output
-> ![Screenshot bagian x](Output/Output_no2.png)
+> ![Screenshot bagian x](Output/Output_no3.png)
 
 Program circular linked list ini mengelola data mahasiswa menggunakan struktur list melingkar, di mana setiap elemen memiliki informasi berupa nama, NIM, jenis kelamin, dan IPK. List bersifat circular sehingga elemen terakhir selalu menunjuk kembali ke elemen pertama, memungkinkan traversal tanpa ujung sampai kembali ke awal. Program menyediakan berbagai operasi seperti membuat list, menambah data di awal, akhir, atau setelah elemen tertentu, menghapus elemen pertama, terakhir, atau setelah elemen tertentu, serta mencari elemen berdasarkan NIM. Pada fungsi utama, beberapa data mahasiswa dibuat menggunakan fungsi `createData`, kemudian dimasukkan ke dalam list sesuai urutan perintah menggunakan `insertFirst`, `insertLast`, dan `insertAfter`. Akhirnya, fungsi `printInfo` menampilkan seluruh isi list secara vertikal, menghasilkan daftar mahasiswa lengkap dalam urutan yang telah dibentuk oleh operasi penyisipan.
 
