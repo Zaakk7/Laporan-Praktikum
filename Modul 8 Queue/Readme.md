@@ -252,14 +252,186 @@ int main() {
 > Output
 > ![Screenshot bagian x](Output/Output_no1.png)
 
-Program ini merupakan implementasi struktur data **Doubly Linked List** untuk menyimpan data kendaraan yang terdiri dari nomor polisi, warna, dan tahun pembuatan. Setiap data disimpan dalam node yang memiliki dua pointer (`next` dan `prev`) sehingga dapat ditelusuri maju dan mundur. Program memungkinkan pengguna menambahkan data kendaraan baru ke dalam list, namun terlebih dahulu memeriksa apakah nomor polisi sudah terdaftar menggunakan fungsi pencarian. Jika belum, data dimasukkan di bagian akhir list melalui prosedur `insertLast`. Setelah input selesai, seluruh data kendaraan ditampilkan ke layar dengan menelusuri list dari elemen terakhir ke awal menggunakan prosedur `printInfo`.
+Program ini merupakan implementasi struktur data **Queue berbasis array dengan mekanisme Alternatif 1**, yaitu *head diam dan tail bergerak*, sehingga elemen baru selalu ditambahkan di bagian belakang (enqueue) dan elemen pertama dihapus dari bagian depan (dequeue). Pada saat dequeue, semua elemen digeser satu posisi ke kiri untuk mempertahankan head tetap di indeks 0. Program terdiri dari tiga file: `queue.h` yang mendefinisikan struktur dan prototipe fungsi, `queue.cpp` yang berisi implementasi operasi queue seperti pengecekan kosong/penuh, enqueue, dequeue, serta fungsi untuk menampilkan isi queue, dan `main.cpp` yang mengeksekusi berbagai operasi enqueue dan dequeue sambil menampilkan perubahan kondisi queue di setiap langkah. Hasil akhirnya memperlihatkan bagaimana antrean berubah sesuai prinsip **FIFO (First In First Out)**, hingga akhirnya kembali menjadi queue kosong.
+
+### Soal 2
+Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme
+queue Alternatif 2 (head bergerak, tail bergerak).
+
+## queue.cpp
+```go
+#include <iostream>
+#include "queue.h"
+using namespace std;
+
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
+}
+
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    return (Q.tail == MAX - 1);  
+    //// PERUBAHAN: pada alternatif 2, queue penuh hanya ketika tail mencapai batas array
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh" << endl;
+    } 
+    else {
+        if (isEmptyQueue(Q)) {
+            Q.head = 0;
+            Q.tail = 0;
+            //// PERUBAHAN: head = 0 dan tail = 0 saat queue awalnya kosong
+        } 
+        else {
+            Q.tail++;  
+            //// PERUBAHAN: TAIL bergerak maju tanpa menggeser elemen (tidak seperti alternatif 1)
+        }
+        Q.info[Q.tail] = x;  
+    }
+}
+
+infotype dequeue(Queue &Q) {
+    if (isEmptyQueue(Q)) {
+        cout << "Queue kosong" << endl;
+        return -1;
+    }
+
+    infotype temp = Q.info[Q.head];
+
+    if (Q.head == Q.tail) {
+        Q.head = -1;
+        Q.tail = -1;
+        //// PERUBAHAN: reset ke kondisi kosong jika elemen tinggal 1
+    } 
+    else {
+        Q.head++;  
+        //// PERUBAHAN PALING PENTING:
+        //// Pada Alternatif 2, HEAD bergerak maju.
+        //// Tidak ada pergeseran array seperti Alternatif 1.
+    }
+
+    return temp;
+}
+
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << "    : ";
+
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } 
+    else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";  
+            //// PERUBAHAN: printing mengikuti posisi head & tail yang bergerak
+        }
+    }
+    cout << endl;
+}
+```
+
+> Output
+> ![Screenshot bagian x](Output/Output_no2.png)
+
+Pada mekanisme **Queue Alternatif 2**, pergerakan antrean diatur dengan memindahkan posisi **head** dan **tail** tanpa menggeser isi array, sehingga operasi menjadi lebih efisien dibanding Alternatif 1. Saat melakukan **enqueue**, nilai baru ditambahkan ke indeks setelah tail dan tail bergerak maju satu posisi; sedangkan head tetap berada pada posisi terakhir elemen yang belum dihapus. Pada operasi **dequeue**, tidak ada penggeseran elemen, namun **head maju satu langkah** untuk menunjuk ke elemen berikutnya, dan jika head dan tail menjadi sama, queue dianggap kembali kosong dan keduanya diset ke `-1`. Implementasi ini memperlihatkan bagaimana antrean tetap mengikuti prinsip **FIFO**, tetapi dengan pengelolaan indeks yang lebih hemat waktu karena tidak perlu melakukan shifting data setiap kali penghapusan.
+
+### Soal 3
+Buatlah implementasi ADT Queue pada file “queue.cpp” dengan menerapkan mekanisme
+queue Alternatif 3 (head dan tail berputar).
+
+## queue.cpp
+```go
+#include <iostream>
+#include "queue.h"
+using namespace std;
+
+void createQueue(Queue &Q) {
+    Q.head = -1;
+    Q.tail = -1;
+}
+
+bool isEmptyQueue(Queue Q) {
+    return (Q.head == -1 && Q.tail == -1);
+}
+
+bool isFullQueue(Queue Q) {
+    if (isEmptyQueue(Q)) return false;
+    return ((Q.tail + 1) % MAX) == Q.head;
+}
+
+void enqueue(Queue &Q, infotype x) {
+    if (isFullQueue(Q)) {
+        cout << "Queue penuh" << endl;
+        return;
+    }
+
+    if (isEmptyQueue(Q)) {
+        Q.head = 0;
+        Q.tail = 0;
+    } else {
+        Q.tail = (Q.tail + 1) % MAX;
+    }
+
+    Q.info[Q.tail] = x;
+}
+
+infotype dequeue(Queue &Q) {
+    if (isEmptyQueue(Q)) {
+        cout << "Queue kosong" << endl;
+        return -1;
+    }
+
+    infotype temp = Q.info[Q.head];
+
+    if (Q.head == Q.tail) {
+        Q.head = -1;
+        Q.tail = -1;
+    } else {
+        Q.head = (Q.head + 1) % MAX;
+    }
+
+    return temp;
+}
+
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << "    : ";
+
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+        cout << endl;
+        return;
+    }
+
+    int i = Q.head;
+    while (true) {
+        cout << Q.info[i];
+        if (i == Q.tail) break;
+        cout << " ";
+        i = (i + 1) % MAX;
+    }
+
+    cout << endl;
+}
+```
+
+> Output
+> ![Screenshot bagian x](Output/Output_no3.png)
+
+Pada mekanisme **Queue Alternatif 3**, antrean diimplementasikan sebagai **circular buffer**, di mana posisi **head** dan **tail** bergerak secara melingkar menggunakan operasi modulo sehingga indeks akan kembali ke awal ketika mencapai batas array. Pada saat **enqueue**, tail maju satu langkah secara melingkar untuk menempatkan elemen baru, dan queue dianggap penuh jika posisi setelah tail kembali bertemu dengan head. Saat **dequeue**, head maju satu langkah secara melingkar untuk mengambil elemen berikutnya, dan jika head dan tail menjadi sama, queue kembali kosong dan kedua indeks diset ke `-1`. Pendekatan ini sangat efisien karena tidak pernah melakukan shifting elemen seperti pada Alternatif 1 dan tidak menyisakan ruang kosong tidak terpakai seperti pada Alternatif 2, sehingga memaksimalkan penggunaan memori array dengan tetap mempertahankan prinsip FIFO.
+
 
 ## Referensi
-1. https://www.w3schools.com/dsa/dsa_theory_linkedlists.php
-2. https://www.w3schools.com/dsa/dsa_data_linkedlists_types.php
-3. https://www.w3schools.com/dsa/dsa_algo_linkedlists_operations.php
-4. https://www.w3schools.com/dsa/dsa_theory_linkedlists_memory.php
-5. https://www.w3schools.com/dsa/dsa_examples.php
+1. https://www.w3schools.com/cpp/cpp_queues.asp
+2. https://www.w3schools.com/dsa/dsa_data_queues.php
+3. https://www.w3schools.com/cpp/cpp_data_structures.asp
+4. https://www.w3schools.com/cpp/exercise.asp?x=xrcise_queues1
+5. https://www.w3schools.com/dsa/dsa_intro.php
+6. https://www.w3schools.com/dsa/dsa_data_structures.php
 
 
 
